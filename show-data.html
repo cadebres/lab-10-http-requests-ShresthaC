@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,14 +9,17 @@
         body {
             font-family: Arial, sans-serif;
         }
+
         .container {
             margin: 20px;
         }
+
         button {
             margin: 10px 0;
             padding: 10px 20px;
             cursor: pointer;
         }
+
         .output {
             margin-top: 10px;
             border: 1px solid #ccc;
@@ -24,21 +28,28 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h1>Show me the Data</h1>
         <div>
-            <h3><Replace Title 1></h3>
+            <h3>
+                Dog fact 1:
+            </h3>
             <button onclick="fetchData(1)">Display Data</button>
             <div id="output1" class="output">No data fetched yet.</div>
         </div>
         <div>
-            <h3><Replace Title 2></h3>
+            <h3>
+                Dog Fact 2:
+            </h3>
             <button onclick="fetchData(2)">Display Data</button>
             <div id="output2" class="output">No data fetched yet.</div>
         </div>
         <div>
-            <h3><Replace Title 2></h3>
+            <h3>
+                Dog Fact 3:
+            </h3>
             <button onclick="fetchData(3)">Display Data</button>
             <div id="output3" class="output">No data fetched yet.</div>
         </div>
@@ -47,9 +58,27 @@
     <script>
 
         async function fetchData(site) {
-            // You can make it work!
+            let fetchFrom;
+            if (site == 1) {
+                fetchFrom = "https://dogapi.dog/api/facts?number=1";
+            } else if (site == 2) {
+                fetchFrom = "https://dogapi.dog/api/facts?number=1";
+            } else {
+                fetchFrom = "https://dogapi.dog/api/facts?number=1";
+            }
+
+            try {
+                const response = await fetch(fetchFrom);
+                const data = await response.json();
+
+                const displayArea = document.getElementById(`output${site}`);
+                displayArea.innerHTML = data.facts[0];
+            } catch (error) {
+                alert("Uh oh...");
+            }
         }
-           
+
     </script>
 </body>
+
 </html>
